@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ZAFUACM - 23.8.5个人赛补题 | Texcavator 的秘密基地</title><meta name="author" content="Texcavator"><meta name="copyright" content="Texcavator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="A - Lucky Conversion原题链接 题意给出两个只包含“4”和“7”的字符串，每次操作可以任选其一：  把“4”变成“7”或者把“7”变成“4” 交换两个数位置  问从第一个字符串至少经过多少次操作能变成第二个字符串 思路遍历字符串，存储：cnt：两个字符串有多少位上的数字不一样a4：a 字符串中有多少个4b4：b 字符串中有多少个4 然后看两个字符串4和7的个数是否一样：  如果一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZAFUACM - 23.8.5个人赛补题">
+<meta property="og:url" content="http://example.com/posts/f3c1cb9d.html">
+<meta property="og:site_name" content="Texcavator 的秘密基地">
+<meta property="og:description" content="A - Lucky Conversion原题链接 题意给出两个只包含“4”和“7”的字符串，每次操作可以任选其一：  把“4”变成“7”或者把“7”变成“4” 交换两个数位置  问从第一个字符串至少经过多少次操作能变成第二个字符串 思路遍历字符串，存储：cnt：两个字符串有多少位上的数字不一样a4：a 字符串中有多少个4b4：b 字符串中有多少个4 然后看两个字符串4和7的个数是否一样：  如果一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-11-09T13:46:15.000Z">
+<meta property="article:modified_time" content="2023-11-09T13:47:15.787Z">
+<meta property="article:author" content="Texcavator">
+<meta property="article:tag" content="ZAFU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/posts/f3c1cb9d.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ZAFUACM - 23.8.5个人赛补题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-09 21:47:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">60</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/zhuye.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Texcavator 的秘密基地"><span class="site-name">Texcavator 的秘密基地</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ZAFUACM - 23.8.5个人赛补题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-09T13:46:15.000Z" title="发表于 2023-11-09 21:46:15">2023-11-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-09T13:47:15.787Z" title="更新于 2023-11-09 21:47:15">2023-11-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9D%82%E9%A2%98/">杂题</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ZAFUACM - 23.8.5个人赛补题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="A-Lucky-Conversion"><a href="#A-Lucky-Conversion" class="headerlink" title="A - Lucky Conversion"></a>A - Lucky Conversion</h1><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/145/A">原题链接</a></p>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给出两个只包含“4”和“7”的字符串，每次操作可以任选其一：</p>
+<ul>
+<li>把“4”变成“7”或者把“7”变成“4”</li>
+<li>交换两个数位置</li>
+</ul>
+<p>问从第一个字符串至少经过多少次操作能变成第二个字符串</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>遍历字符串，存储：<br><code>cnt</code>：两个字符串有多少位上的数字不一样<br><code>a4</code>：a 字符串中有多少个4<br><code>b4</code>：b 字符串中有多少个4</p>
+<p>然后看两个字符串4和7的个数是否一样：</p>
+<ul>
+<li>如果一样就只需要靠交换顺序来变换：最少的操作数就是<code>cnt / 2</code>，因为每交换一次可以改变两个位置</li>
+<li>如果不一样要先把个数调整成一样：调整的原则是，改变那些对应位置上数字不一样的，也就需要调整<code>abs(a4 - b4)</code>次，如果此时还有对应位置上数字不一样的情况，就进行内部交换，再加上<code>(cnt - abs(a4 - b4)) / 2</code>次</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    string a, b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> a4 = <span class="number">0</span>, b4 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.<span class="built_in">size</span>(); i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] != b[i]) cnt ++ ;</span><br><span class="line">        <span class="keyword">if</span> (a[i] == <span class="string">&#x27;4&#x27;</span>) a4 ++ ;</span><br><span class="line">        <span class="keyword">if</span> (b[i] == <span class="string">&#x27;4&#x27;</span>) b4 ++ ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (a4 == b4) cout &lt;&lt; cnt / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        ans += <span class="built_in">abs</span>(a4 - b4);</span><br><span class="line">        <span class="keyword">if</span> (cnt &gt; <span class="built_in">abs</span>(a4 - b4)) ans += (cnt - <span class="built_in">abs</span>(a4 - b4)) / <span class="number">2</span>;</span><br><span class="line">        cout &lt;&lt; ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="B-Constanze’s-Machine"><a href="#B-Constanze’s-Machine" class="headerlink" title="B - Constanze’s Machine"></a>B - Constanze’s Machine</h1><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1245/C">原题链接</a></p>
+<h2 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h2><p>机器会让所有的“m”变成“nn”，所有的“w”变成“uu”<br>现在给出一个字符串，判断这个字符串本来有多少种可能的样子<br>如果这不可能是机器输出的字符串就输出0</p>
+<h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p>首先判断字符串中有没有“w”或者“m”，有的话直接输出0，因为机器不可能输出这两个字母</p>
+<p>然后找到并记录每个连续的“u”序列或者“n”序列，最后的方案数就是每一段序列的方案数的乘积</p>
+<p>现在要解决的问题变成了每一段的方案数是多少，稍微枚举一下就能发现，这一段有几个连续的“w”或“n”，这一段的方案数就是斐波那契数列<code>f[i]</code>，于是问题就解决了~</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> i64 = <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> i64 mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打表算出斐波那契数列</span></span><br><span class="line">    i64 f[N];</span><br><span class="line">    f[<span class="number">1</span>] = <span class="number">1</span>, f[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">3</span>; i &lt;= N; i ++ )</span><br><span class="line">        f[i] = (f[i - <span class="number">1</span>] + f[i - <span class="number">2</span>]) % mod;</span><br><span class="line"></span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i ++ )</span><br><span class="line">    	<span class="keyword">if</span> (s[i] == <span class="string">&#x27;w&#x27;</span> || s[i] == <span class="string">&#x27;m&#x27;</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; cnt;</span><br><span class="line">    <span class="type">int</span> flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (s[i] == s[i - <span class="number">1</span>] &amp;&amp; (s[i] == <span class="string">&#x27;n&#x27;</span> || s[i] == <span class="string">&#x27;u&#x27;</span>)) flag ++ ;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cnt.<span class="built_in">push_back</span>(f[flag]);</span><br><span class="line">            flag = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cnt.<span class="built_in">push_back</span>(f[flag]);</span><br><span class="line">    i64 ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; cnt.<span class="built_in">size</span>(); i ++ )</span><br><span class="line">        ans = ans * (i64)cnt[i] % mod;</span><br><span class="line">    cout &lt;&lt; ans % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="C-Maximum-Median"><a href="#C-Maximum-Median" class="headerlink" title="C - Maximum Median"></a>C - Maximum Median</h1><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1201/C">原题链接</a></p>
+<h2 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h2><p>给出一个数组和最大操作次数，每次操作可以任选一个元素加1，问经过操作后最大的中位数是多少</p>
+<h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><p><del>&#x3D;&#x3D;<strong>这！题！卡！int！</strong>&#x3D;&#x3D;</del></p>
+<p>我的思路就是首先对数组排序，之后就只用从中位数遍历后面的元素即可</p>
+<p>观察数组发现，从中位数开始，如果当前遍历的数和比后面的数小，就可以只将当前的数加1（也能保证当前的数还是中位数），当前的数如果和后面的数一样大，就需要将后面一样大的数也一起加1（才能保证中位数也加了1）</p>
+<p>定义的三个变量含义如下：<br><code>cnt</code>：目前一次需要对几个数操作（才能让中位数加1）<br><code>ans</code>：目前一共操作了多少次<br><code>idx</code>：中位数在原基础上加了多少</p>
+<p>遍历每个数时，中位数可以在原基础上加<code>a[i] - a[i - 1]</code>次，操作次数就需要加<code>cnt * (a[i] - a[i - 1])</code>次（因为每次可能要不止操作一个数），当<code>ans</code>大于最大操作次数时，跳出循环即可</p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> i64 = <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, k;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) cin &gt;&gt; a[i];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">sort</span>(a.<span class="built_in">begin</span>(), a.<span class="built_in">end</span>());</span><br><span class="line">    </span><br><span class="line">    i64 cnt = <span class="number">0</span>; <span class="comment">// 现在一次动几个</span></span><br><span class="line">    i64 ans = <span class="number">0</span>; <span class="comment">// 目前操作多少次</span></span><br><span class="line">    i64 idx = <span class="number">0</span>; <span class="comment">// 中位数加了多少次</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = a.<span class="built_in">size</span>() / <span class="number">2</span> + <span class="number">1</span>; i &lt; a.<span class="built_in">size</span>(); i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        cnt ++ ;</span><br><span class="line">        idx += a[i] - a[i - <span class="number">1</span>];</span><br><span class="line">        ans += cnt * (a[i] - a[i - <span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">if</span> (ans &gt; k)</span><br><span class="line">        &#123;</span><br><span class="line">            ans -= cnt * (a[i] - a[i - <span class="number">1</span>]);</span><br><span class="line">            idx -= a[i] - a[i - <span class="number">1</span>];</span><br><span class="line">            cnt -- ;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cnt ++ ;</span><br><span class="line">    cout &lt;&lt; a[a.<span class="built_in">size</span>() / <span class="number">2</span>] + idx + (k - ans) / cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="D-Remove-Extra-One"><a href="#D-Remove-Extra-One" class="headerlink" title="D - Remove Extra One"></a>D - Remove Extra One</h1><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/900/C">原题链接</a></p>
+<h2 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h2><p>给出一个数组，如果某个元素之前的任何一个元素都比这个元素大，那就叫这个元素 record，现在要删去一个元素，让这个数组的 record 最多，问删去哪个元素</p>
+<h2 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h2><p>赛时：八成是逆序对…看某一个元素和其他元素之间能够成多少逆序对…然后这样那样就能做了…&#x2F;兴奋.jpg<br>赛后：</p>
+<img src="/img/loading.gif" data-original="/posts/undefined/1.png" class>
+<p><del>？？？被世界欺骗</del></p>
+<p>本题属于思维题和逆序对毛线关系没有，遍历一遍数组就能得到答案</p>
+<p>遍历数组时，记录下数组从开头到目前遍历位置的<strong>最大值</strong>和<strong>次大值</strong>，再定义一个数组 $x[i]$，存储删去元素 $i$ 后，整个数组 record 数量的变化</p>
+<p>每遍历一个元素——</p>
+<ul>
+<li>如果这个元素比记录下来的最大值还要大，说明这个元素就是 record，删去这个元素的话，整个数组的 record 数量会减 1，因此需要进行的操作是：<code>x[i] --</code>以及更新目前的最大值与次大值</li>
+<li>如果这个元素处于记录下来的最大值与次大值之间，说明这个元素是目前的次大值，只要删去目前的最大值，当前遍历的这个元素就会变成 record（也就会让整个数组的 record 数量加 1 ），因此需要进行的操作是：<code>x[max] ++</code>，以及更新目前的次大值‘’</li>
+<li>如果这个元素小于目前记录的次大值，无论删去哪一个元素都不会对数组的 record 数量有影响，就不用管它</li>
+</ul>
+<p>最后，在$x[N]$里找到最大的删去即可</p>
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">(n + <span class="number">1</span>)</span>, <span class="title">x</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) cin &gt;&gt; a[i];</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> m1st = <span class="number">0</span>, m2nd = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &gt; m1st)</span><br><span class="line">        &#123;</span><br><span class="line">            x[a[i]] -- ;</span><br><span class="line">            m2nd = m1st;</span><br><span class="line">            m1st = a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (a[i] &gt; m2nd)</span><br><span class="line">        &#123;</span><br><span class="line">            x[m1st] ++ ;</span><br><span class="line">            m2nd = a[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">-0x3f3f3f3f</span>, ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">        <span class="keyword">if</span> (x[i] &gt; cnt)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt = x[i];</span><br><span class="line">            ans = i;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="E-A-Determined-Cleanup"><a href="#E-A-Determined-Cleanup" class="headerlink" title="E - A Determined Cleanup"></a>E - A Determined Cleanup</h1><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/933/B">原题链接</a></p>
+<h2 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h2><p>已知$f(x)&#x3D;q(x)(x+k)+p$，求出合适的$q(x)$使得多项式$f(x)$中的每一项系数都大于等于0且小于给定的k，输出$f(x)$系数</p>
+<h2 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h2><p>设 $f(x)$ 每一项为 $a_ix^i$，$q(x)$ 每一项为 $b_ix^i$，那么可以得到以下规律：<br>$a_0&#x3D;b_0k+p$<br>$a_1&#x3D;b_1k+b_0$<br>$a_2&#x3D;b_2k+b_1$<br>……<br>$a_n&#x3D;b_nk+b_{n-1}$</p>
+<p>因为多项式的最高次数为 n，所以 $b_n$ 必须为0，否组会让多项式的最高次数变成 n+1,<br>那么 $a_n&#x3D;b_{n-1}$，所有的答案都在整数范围内取</p>
+<p>现在关注第一个式子 $a_0&#x3D;b_0k+p$，$a_0$又要小于$k$，所以可以直接得到 $a_0&#x3D;p%k$，又因为 $a_0&gt;&#x3D;0$，所以如果 $p%k$ 是负数的话，直接在它的基础上加 k 即可</p>
+<p>同时，因为 $0&lt;&#x3D;a_0&lt;k$，把 $a_0$ 代入，得到 $0&lt;&#x3D;b_0k+p&lt;k$，化简可得 $b_0&#x3D;-\frac{p}{k}$，当然如果之前的 $p%k$ 是负数的话，也要将这里的 p 加1（正负平衡）</p>
+<p>按照这个思路一直往下做，直到找到一个 $b_i&#x3D;0$ 为止（在上面说了 $b_n&#x3D;0$， 所以找到一个等于0的 b 就可以默认找到答案了）</p>
+<p>最后注意开 long long</p>
+<h2 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> i64 = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    i64 p, k;</span><br><span class="line">    cin &gt;&gt; p &gt;&gt; k;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    vector&lt;i64&gt; ans;</span><br><span class="line">    <span class="keyword">while</span> (p != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans.<span class="built_in">push_back</span>(p % k);</span><br><span class="line">        p = -p / k;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ans[cnt] &lt; <span class="number">0</span>) ans[cnt] += k, p ++ ;</span><br><span class="line">        cnt ++ ;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; cnt; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="F-Minimal-k-covering"><a href="#F-Minimal-k-covering" class="headerlink" title="F - Minimal k-covering"></a>F - Minimal k-covering</h1><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/976/F">原题链接</a></p>
+<p>（网络流好难 勉强理解个大概但是搞不出这题……开摆！！！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Texcavator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/f3c1cb9d.html">http://example.com/posts/f3c1cb9d.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Texcavator 的秘密基地</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ZAFU/">ZAFU</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/53013696.html" title="【洛谷】p1825 [USACO11OPEN] Corn Maze S"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【洛谷】p1825 [USACO11OPEN] Corn Maze S</div></div></a></div><div class="next-post pull-right"><a href="/posts/508731ad.html" title="ZAFUACM - 7.11个人赛补题 A - F &amp; H"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ZAFUACM - 7.11个人赛补题 A - F &amp; H</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/5b53d481.html" title="ZAFUACM - 7.10个人赛补题 A - C &amp; E &amp; H"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">ZAFUACM - 7.10个人赛补题 A - C &amp; E &amp; H</div></div></a></div><div><a href="/posts/508731ad.html" title="ZAFUACM - 7.11个人赛补题 A - F &amp; H"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">ZAFUACM - 7.11个人赛补题 A - F &amp; H</div></div></a></div><div><a href="/posts/ac229277.html" title="ZAFUACM - 7.9个人赛补题 A - C E G H"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">ZAFUACM - 7.9个人赛补题 A - C E G H</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Texcavator</div><div class="author-info__description">听一万种声音，但只成为自己</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">60</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Texcavator" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/dhxbshbdjzxy?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="https://qm.qq.com/q/btFkIwqdKU" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Lucky-Conversion"><span class="toc-number">1.</span> <span class="toc-text">A - Lucky Conversion</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-number">1.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Constanze%E2%80%99s-Machine"><span class="toc-number">2.</span> <span class="toc-text">B - Constanze’s Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-number">2.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-number">2.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-number">2.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-Maximum-Median"><span class="toc-number">3.</span> <span class="toc-text">C - Maximum Median</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-number">3.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-number">3.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-number">3.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#D-Remove-Extra-One"><span class="toc-number">4.</span> <span class="toc-text">D - Remove Extra One</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-number">4.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-number">4.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-number">4.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#E-A-Determined-Cleanup"><span class="toc-number">5.</span> <span class="toc-text">E - A Determined Cleanup</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-4"><span class="toc-number">5.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-4"><span class="toc-number">5.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="toc-number">5.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#F-Minimal-k-covering"><span class="toc-number">6.</span> <span class="toc-text">F - Minimal k-covering</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/a7becaf9.html" title="【数据结构】查找排序_复习笔记总结">【数据结构】查找排序_复习笔记总结</a><time datetime="2023-11-09T14:03:40.000Z" title="发表于 2023-11-09 22:03:40">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/af7de5b5.html" title="【数据结构】图_复习笔记总结">【数据结构】图_复习笔记总结</a><time datetime="2023-11-09T14:01:41.000Z" title="发表于 2023-11-09 22:01:41">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/72a6d47e.html" title="【数据结构】树_复习笔记总结">【数据结构】树_复习笔记总结</a><time datetime="2023-11-09T13:55:31.000Z" title="发表于 2023-11-09 21:55:31">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/1994ad8a.html" title="【数据结构】栈和队列_复习笔记总结">【数据结构】栈和队列_复习笔记总结</a><time datetime="2023-11-09T13:54:12.000Z" title="发表于 2023-11-09 21:54:12">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/5772d335.html" title="【数据结构】线性表_复习笔记总结">【数据结构】线性表_复习笔记总结</a><time datetime="2023-11-09T13:52:26.000Z" title="发表于 2023-11-09 21:52:26">2023-11-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Texcavator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
