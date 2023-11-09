@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【动态规划】最长上升子序列LIS | Texcavator 的秘密基地</title><meta name="author" content="Texcavator"><meta name="copyright" content="Texcavator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="问题的开始：最长上升子序列原题链接 给定一个长度为 N 的数列，求数值严格单调递增的子序列的长度最长是多少。 输入格式 第一行包含整数 N。 第二行包含 N 个整数，表示完整序列。 输出格式 输出一个整数，表示最大长度。 数据范围 $1≤N≤1000，$$−109≤数列中的数≤109$ 输入样例 73 1 2 1 8 5 6 输出样例 4 思路 代码#include &lt;bits&#x2F;stdc++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【动态规划】最长上升子序列LIS">
+<meta property="og:url" content="http://example.com/posts/2ec3d24c.html">
+<meta property="og:site_name" content="Texcavator 的秘密基地">
+<meta property="og:description" content="问题的开始：最长上升子序列原题链接 给定一个长度为 N 的数列，求数值严格单调递增的子序列的长度最长是多少。 输入格式 第一行包含整数 N。 第二行包含 N 个整数，表示完整序列。 输出格式 输出一个整数，表示最大长度。 数据范围 $1≤N≤1000，$$−109≤数列中的数≤109$ 输入样例 73 1 2 1 8 5 6 输出样例 4 思路 代码#include &lt;bits&#x2F;stdc++">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-11-09T13:22:24.000Z">
+<meta property="article:modified_time" content="2023-11-09T13:28:03.302Z">
+<meta property="article:author" content="Texcavator">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="最长上升子序列">
+<meta property="article:tag" content="LIS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/posts/2ec3d24c.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【动态规划】最长上升子序列LIS',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-09 21:28:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/zhuye.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Texcavator 的秘密基地"><span class="site-name">Texcavator 的秘密基地</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【动态规划】最长上升子序列LIS</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-09T13:22:24.000Z" title="发表于 2023-11-09 21:22:24">2023-11-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-09T13:28:03.302Z" title="更新于 2023-11-09 21:28:03">2023-11-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【动态规划】最长上升子序列LIS"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="问题的开始：最长上升子序列"><a href="#问题的开始：最长上升子序列" class="headerlink" title="问题的开始：最长上升子序列"></a>问题的开始：最长上升子序列</h1><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/897/">原题链接</a></p>
+<p>给定一个长度为 N 的数列，求数值严格单调递增的子序列的长度最长是多少。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数 N。</p>
+<p>第二行包含 N 个整数，表示完整序列。</p>
+<p><strong>输出格式</strong></p>
+<p>输出一个整数，表示最大长度。</p>
+<p><strong>数据范围</strong></p>
+<p>$1≤N≤1000，$<br>$−109≤数列中的数≤109$</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">8</span> <span class="number">5</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><img src="/img/loading.gif" data-original="/posts/undefined/4.png" class>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[N], f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) cin &gt;&gt; a[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        f[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; i; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[i]) f[i] = f[j] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) res = <span class="built_in">max</span>(res, f[i]);</span><br><span class="line">    cout &lt;&lt; res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="怪盗基德的滑翔翼"><a href="#怪盗基德的滑翔翼" class="headerlink" title="怪盗基德的滑翔翼"></a>怪盗基德的滑翔翼</h1><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1019/">原题链接</a></p>
+<p>怪盗基德是一个充满传奇色彩的怪盗，专门以珠宝为目标的超级盗窃犯。</p>
+<p>而他最为突出的地方，就是他每次都能逃脱中村警部的重重围堵，而这也很大程度上是多亏了他随身携带的便于操作的滑翔翼。</p>
+<p>有一天，怪盗基德像往常一样偷走了一颗珍贵的钻石，不料却被柯南小朋友识破了伪装，而他的滑翔翼的动力装置也被柯南踢出的足球破坏了。</p>
+<p>不得已，怪盗基德只能操作受损的滑翔翼逃脱。</p>
+<p>假设城市中一共有N幢建筑排成一条线，每幢建筑的高度各不相同。</p>
+<p>初始时，怪盗基德可以在任何一幢建筑的顶端。</p>
+<p>他可以选择一个方向逃跑，但是不能中途改变方向（因为中森警部会在后面追击）。</p>
+<p>因为滑翔翼动力装置受损，他只能往下滑行（即：只能从较高的建筑滑翔到较低的建筑）。</p>
+<p>他希望尽可能多地经过不同建筑的顶部，这样可以减缓下降时的冲击力，减少受伤的可能性。</p>
+<p>请问，他最多可以经过多少幢不同建筑的顶部(包含初始时的建筑)？</p>
+<p><strong>输入格式</strong></p>
+<p>输入数据第一行是一个整数K，代表有K组测试数据。</p>
+<p>每组测试数据包含两行：第一行是一个整数N，代表有N幢建筑。第二行包含N个不同的整数，每一个对应一幢建筑的高度h，按照建筑的排列顺序给出。</p>
+<p><strong>输出格式</strong></p>
+<p>对于每一组测试数据，输出一行，包含一个整数，代表怪盗基德最多可以经过的建筑数量。</p>
+<p><strong>数据范围</strong></p>
+<p>$1≤K≤100,$<br>$1≤N≤100,$<br>$0&lt;h&lt;10000$</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">300</span> <span class="number">207</span> <span class="number">155</span> <span class="number">299</span> <span class="number">298</span> <span class="number">170</span> <span class="number">158</span> <span class="number">65</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">65</span> <span class="number">158</span> <span class="number">170</span> <span class="number">298</span> <span class="number">299</span> <span class="number">155</span> <span class="number">207</span> <span class="number">300</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>有一排楼房，怪盗基德可以选择任意一个开始，只能往一个方向跳到比当前所在楼房低的楼房，问他最多能跳多少楼房</p>
+<h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p>因为只能往一个方向跳，做两个方向的最长上升子序列即可</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[N], f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> t;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span> (t -- )</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) cin &gt;&gt; a[i];</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 正向</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; i; j ++ )</span><br><span class="line">                <span class="keyword">if</span> (a[i] &gt; a[j]) f[i] = <span class="built_in">max</span>(f[i], f[j] + <span class="number">1</span>);</span><br><span class="line">            res = <span class="built_in">max</span>(res, f[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 反向</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n; i; i -- )</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = n; j &gt; i; j -- )</span><br><span class="line">                <span class="keyword">if</span> (a[i] &gt; a[j]) f[i] = <span class="built_in">max</span>(f[i], f[j] + <span class="number">1</span>);</span><br><span class="line">            res = <span class="built_in">max</span>(res, f[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; res &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="登山"><a href="#登山" class="headerlink" title="登山"></a>登山</h1><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1016/">原题链接</a></p>
+<p>五一到了，ACM队组织大家去登山观光，队员们发现山上一共有N个景点，并且决定按照顺序来浏览这些景点，即每次所浏览景点的编号都要大于前一个浏览景点的编号。</p>
+<p>同时队员们还有另一个登山习惯，就是不连续浏览海拔相同的两个景点，并且一旦开始下山，就不再向上走了。</p>
+<p>队员们希望在满足上面条件的同时，尽可能多的浏览景点，你能帮他们找出最多可能浏览的景点数么？</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数N，表示景点数量。</p>
+<p>第二行包含N个整数，表示每个景点的海拔。</p>
+<p><strong>输出格式</strong></p>
+<p>输出一个整数，表示最多能浏览的景点数。</p>
+<p><strong>数据范围</strong></p>
+<p>$2≤N≤1000$</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">186</span> <span class="number">186</span> <span class="number">150</span> <span class="number">200</span> <span class="number">160</span> <span class="number">130</span> <span class="number">197</span> <span class="number">220</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h2 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h2><p>一群人浏览几个景点，满足以下规则：</p>
+<ul>
+<li>按照编号递增顺序浏览</li>
+<li>相邻两景点高度不能相同</li>
+<li>一旦开始下降就不能上升了</li>
+</ul>
+<p>目标：最多浏览多少景点</p>
+<h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><p>条件1：必须是子序列<br>条件2、3：路径形状先上升再下降</p>
+<p>目标：求所有形状满足要求的子序列长度最大值</p>
+<p>上升选择什么不影响我们下降时选择什么，因此两段完全独立，分别求出从左往右和从右往左的上升子序列最大值，求出<code>f[i] + g[i] - 1</code>即可</p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[N], g[N], f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) cin &gt;&gt; a[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        f[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; i; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[i]) f[i] = <span class="built_in">max</span>(f[i], f[j] + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = n; i; i -- )</span><br><span class="line">    &#123;</span><br><span class="line">        g[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = n; j &gt; i; j -- )</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[i]) g[i] = <span class="built_in">max</span>(g[i], g[j] + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) res = <span class="built_in">max</span>(res, f[i] + g[i] - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="友好城市"><a href="#友好城市" class="headerlink" title="友好城市"></a>友好城市</h1><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1014/">原题链接</a></p>
+<p>Palmia国有一条横贯东西的大河，河有笔直的南北两岸，岸上各有位置各不相同的N个城市。</p>
+<p>北岸的每个城市有且仅有一个友好城市在南岸，而且不同城市的友好城市不相同。</p>
+<p>每对友好城市都向政府申请在河上开辟一条直线航道连接两个城市，但是由于河上雾太大，政府决定避免任意两条航道交叉，以避免事故。</p>
+<p>编程帮助政府做出一些批准和拒绝申请的决定，使得在保证任意两条航线不相交的情况下，被批准的申请尽量多。</p>
+<p><strong>输入格式</strong></p>
+<p>第1行，一个整数N，表示城市数。</p>
+<p>第2行到第n+1行，每行两个整数，中间用1个空格隔开，分别表示南岸和北岸的一对友好城市的坐标。</p>
+<p><strong>输出格式</strong></p>
+<p>仅一行，输出一个整数，表示政府所能批准的最多申请数。</p>
+<p><strong>数据范围</strong></p>
+<p>$1≤N≤5000,$<br>$0≤x_i≤10000$</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">22</span> <span class="number">4</span></span><br><span class="line"><span class="number">2</span> <span class="number">6</span></span><br><span class="line"><span class="number">10</span> <span class="number">3</span></span><br><span class="line"><span class="number">15</span> <span class="number">12</span></span><br><span class="line"><span class="number">9</span> <span class="number">8</span></span><br><span class="line"><span class="number">17</span> <span class="number">17</span></span><br><span class="line"><span class="number">4</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h2 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h2><p>河的南北两岸有很多城市，友好城市之间可以建桥，满足以下原则：</p>
+<ul>
+<li>条件1：每个城市只能建一座桥</li>
+<li>条件2：桥与桥间不能相交</li>
+<li>条件3：只能在友好城市间建桥</li>
+</ul>
+<p>目标：最多建多少桥</p>
+<h2 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h2><p>题目直接转化成给出多条边，选择最多的边数两边不相交</p>
+<p>按下面自变量大小排序，只要上面的自变量是上升子序列，就一定满足情况</p>
+<img src="/img/loading.gif" data-original="/posts/undefined/2.png" class>
+
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">5010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line">PII q[N];</span><br><span class="line"><span class="type">int</span> f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) cin &gt;&gt; q[i].first &gt;&gt; q[i].second;</span><br><span class="line">    <span class="built_in">sort</span>(q, q + n);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        f[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (q[i].second &gt; q[j].second) f[i] = <span class="built_in">max</span>(f[i], f[j] + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        res = <span class="built_in">max</span>(res, f[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="拦截导弹"><a href="#拦截导弹" class="headerlink" title="拦截导弹"></a>拦截导弹</h1><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1012/">原题链接</a></p>
+<p>某国为了防御敌国的导弹袭击，发展出一种导弹拦截系统。</p>
+<p>但是这种导弹拦截系统有一个缺陷：虽然它的第一发炮弹能够到达任意的高度，但是以后每一发炮弹都不能高于前一发的高度。</p>
+<p>某天，雷达捕捉到敌国的导弹来袭。</p>
+<p>由于该系统还在试用阶段，所以只有一套系统，因此有可能不能拦截所有的导弹。</p>
+<p>输入导弹依次飞来的高度（雷达给出的高度数据是不大于30000的正整数，导弹数不超过1000），计算这套系统最多能拦截多少导弹，如果要拦截所有导弹最少要配备多少套这种导弹拦截系统。</p>
+<p><strong>输入格式</strong></p>
+<p>共一行，输入导弹依次飞来的高度。</p>
+<p><strong>输出格式</strong></p>
+<p>第一行包含一个整数，表示最多能拦截的导弹数。</p>
+<p>第二行包含一个整数，表示要拦截所有导弹最少要配备的系统数。</p>
+<p><strong>数据范围</strong></p>
+<p>雷达给出的高度数据是不大于 30000 的正整数，导弹数不超过 1000。</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">389</span> <span class="number">207</span> <span class="number">155</span> <span class="number">300</span> <span class="number">299</span> <span class="number">170</span> <span class="number">158</span> <span class="number">65</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h2><p>给出一个序列代表不同导弹高度，导弹拦截系统每次只能拦截比上一次拦截的导弹低的</p>
+<p>第一问：一次最多拦截多少个导弹<br>第二问：需要多少拦截系统才能把所有导弹拦截</p>
+<h2 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h2><p>第一问：就是求最长下降子序列</p>
+<p>第二问：<strong>贪心</strong>，用样例说明</p>
+<p>389 207 155 300 299 170 158 65<br>首先389一定要新开一个系统<br>然后207有两个选择：<br>（1）接在现有的某个系统序列之后<br>（2）创建一个新系统<br>直觉思路：<br>要使得每个子序列的末尾最大（这样之后就能接上更大的数）</p>
+<p>流程：<br>从前往后扫描每个数，对于每个数：</p>
+<ul>
+<li>情况1: 如果现有的子序列的结尾都小于当前数，则创建新子序列</li>
+<li>情况2: 将当前数放到结尾大于等于它的最小的子序列后面</li>
+</ul>
+<h2 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line"><span class="type">int</span> f[N], g[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; q[n]) n ++ ;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        f[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (q[j] &gt;= q[i]) f[i] = <span class="built_in">max</span>(f[i], f[j] + <span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        res = <span class="built_in">max</span>(res, f[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; res &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (k &lt; cnt &amp;&amp; g[k] &lt; q[i]) k ++; <span class="comment">// g[i]存储第i个子序列末尾的数</span></span><br><span class="line">        g[k] = q[i];</span><br><span class="line">        <span class="keyword">if</span> (k &gt;= cnt) cnt ++ ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="导弹防御系统"><a href="#导弹防御系统" class="headerlink" title="导弹防御系统"></a>导弹防御系统</h1><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/189/">原题链接</a></p>
+<p>为了对抗附近恶意国家的威胁，R 国更新了他们的导弹防御系统。</p>
+<p>一套防御系统的导弹拦截高度要么一直<strong>严格单调</strong>上升要么一直<strong>严格单调</strong>下降。</p>
+<p>例如，一套系统先后拦截了高度为 3 和高度为 4 的两发导弹，那么接下来该系统就只能拦截高度大于 4 的导弹。</p>
+<p>给定即将袭来的一系列导弹的高度，请你求出至少需要多少套防御系统，就可以将它们全部击落。</p>
+<p><strong>输入格式</strong></p>
+<p>输入包含多组测试用例。</p>
+<p>对于每个测试用例，第一行包含整数 n，表示来袭导弹数量。</p>
+<p>第二行包含 n 个不同的整数，表示每个导弹的高度。</p>
+<p>当输入测试用例 n&#x3D;0 时，表示输入终止，且该用例无需处理。</p>
+<p><strong>输出格式</strong></p>
+<p>对于每个测试用例，输出一个占据一行的整数，表示所需的防御系统数量。</p>
+<p><strong>数据范围</strong></p>
+<p>$1≤n≤50$</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">3</span> <span class="number">5</span> <span class="number">2</span> <span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="number">0</span> </span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p><strong>样例解释</strong></p>
+<p>对于给出样例，最少需要两套防御系统。</p>
+<p>一套击落高度为 3,4 的导弹，另一套击落高度为 5,2,1 的导弹。</p>
+<h2 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h2><p>和拦截导弹的区别就是，有两种拦截系统，一种只能越拦越高，一种只能越拦越低</p>
+<h2 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h2><p><strong>贪心+dfs爆搜</strong></p>
+<p>每次需要判断放到第一类系统还是第二类系统，所以只能用爆搜做</p>
+<p>（定义全局变量实时更新or迭代加深都可以做</p>
+<p>详见下方代码</p>
+<h2 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">55</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> q[N], h[N];</span><br><span class="line"><span class="type">int</span> up[N], down[N];</span><br><span class="line"><span class="type">int</span> ans;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// todo 下方做法为更新全局最小值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> su, <span class="type">int</span> sd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (su + sd &gt;= ans) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (u == n)</span><br><span class="line">    &#123;</span><br><span class="line">        ans = su + sd;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上升</span></span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (k &lt; su &amp;&amp; up[k] &gt;= q[u]) k ++ ;</span><br><span class="line">    <span class="type">int</span> temp = up[k];</span><br><span class="line">    up[k] = q[u];</span><br><span class="line">    <span class="keyword">if</span> (k &lt; su) <span class="built_in">dfs</span>(u + <span class="number">1</span>, su, sd);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">dfs</span>(u + <span class="number">1</span>, su + <span class="number">1</span>, sd);</span><br><span class="line">    up[k] = temp;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下降</span></span><br><span class="line">    k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (k &lt; sd &amp;&amp; down[k] &lt;= q[u]) k ++ ;</span><br><span class="line">    temp = down[k];</span><br><span class="line">    down[k] = q[u];</span><br><span class="line">    <span class="keyword">if</span> (k &lt; sd) <span class="built_in">dfs</span>(u + <span class="number">1</span>, su, sd);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">dfs</span>(u + <span class="number">1</span>, su, sd + <span class="number">1</span>);</span><br><span class="line">    down[k] = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; n, n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) cin &gt;&gt; q[i];</span><br><span class="line"></span><br><span class="line">        ans = n;</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// todo 下方做法为迭代加深</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> depth, <span class="type">int</span> u, <span class="type">int</span> su, <span class="type">int</span> sd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (su + sd &gt; depth) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (u == n) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= su; i ++ )</span><br><span class="line">        <span class="keyword">if</span> (up[i] &lt; h[u])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> t = up[i];</span><br><span class="line">            up[i] = h[u];</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">dfs</span>(depth, u + <span class="number">1</span>, su, sd)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            up[i] = t;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    up[su + <span class="number">1</span>] = h[u];</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">dfs</span>(depth, u + <span class="number">1</span>, su + <span class="number">1</span>, sd)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= sd; i ++ )</span><br><span class="line">        <span class="keyword">if</span> (down[i] &gt; h[u])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> t = down[i];</span><br><span class="line">            down[i] = h[u];</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">dfs</span>(depth, u + <span class="number">1</span>, su, sd)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            down[i] = t;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    down[sd + <span class="number">1</span>] = h[u];</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">dfs</span>(depth, u + <span class="number">1</span>, su, sd + <span class="number">1</span>)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; n, n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) cin &gt;&gt; h[i];</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> depth = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!<span class="built_in">dfs</span>(depth, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)) depth ++ ;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; depth &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="最长公共上升子序列"><a href="#最长公共上升子序列" class="headerlink" title="最长公共上升子序列"></a>最长公共上升子序列</h1><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/274/">原题链接</a></p>
+<p>熊大妈的奶牛在小沐沐的熏陶下开始研究信息题目。</p>
+<p>小沐沐先让奶牛研究了最长上升子序列，再让他们研究了最长公共子序列，现在又让他们研究最长公共上升子序列了。</p>
+<p>小沐沐说，对于两个数列 A 和 B，如果它们都包含一段位置不一定连续的数，且数值是严格递增的，那么称这一段数是两个数列的公共上升子序列，而所有的公共上升子序列中最长的就是最长公共上升子序列了。</p>
+<p>奶牛半懂不懂，小沐沐要你来告诉奶牛什么是最长公共上升子序列。</p>
+<p>不过，只要告诉奶牛它的长度就可以了。</p>
+<p>数列 A 和 B 的长度均不超过 3000。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含一个整数 N，表示数列 A，B 的长度。</p>
+<p>第二行包含 N 个整数，表示数列 A。</p>
+<p>第三行包含 N 个整数，表示数列 B。</p>
+<p><strong>输出格式</strong></p>
+<p>输出一个整数，表示最长公共上升子序列的长度。</p>
+<p><strong>数据范围</strong></p>
+<p>$1≤N≤3000$,序列中的数字均不超过 $2^{31}−1$。</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">2</span> <span class="number">2</span> <span class="number">1</span> <span class="number">3</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="题意-5"><a href="#题意-5" class="headerlink" title="题意"></a>题意</h2><p>找两个序列的最长公共上升子序列</p>
+<h2 id="思路-6"><a href="#思路-6" class="headerlink" title="思路"></a>思路</h2><img src="/img/loading.gif" data-original="/posts/undefined/1.png" class>
+
+<h2 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">3010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[N], b[N];</span><br><span class="line"><span class="type">int</span> f[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) cin &gt;&gt; a[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) cin &gt;&gt; b[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> maxx = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j ++ )</span><br><span class="line">        &#123;</span><br><span class="line">            f[i][j] = f[i - <span class="number">1</span>][j];</span><br><span class="line">            <span class="keyword">if</span> (a[i] == b[j]) f[i][j] = <span class="built_in">max</span>(f[i][j], maxx);</span><br><span class="line">            <span class="keyword">if</span> (a[i] &gt; b[j]) maxx = <span class="built_in">max</span>(maxx, f[i - <span class="number">1</span>][j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) res = <span class="built_in">max</span>(res, f[n][i]);</span><br><span class="line">    cout &lt;&lt; res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Texcavator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/2ec3d24c.html">http://example.com/posts/2ec3d24c.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Texcavator 的秘密基地</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a><a class="post-meta__tags" href="/tags/dp/">dp</a><a class="post-meta__tags" href="/tags/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/">最长上升子序列</a><a class="post-meta__tags" href="/tags/LIS/">LIS</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/bb05dd2a.html" title="【动态规划】数字三角形"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【动态规划】数字三角形</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/213c1d61.html" title="【动态规划】区间DP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【动态规划】区间DP</div></div></a></div><div><a href="/posts/bb05dd2a.html" title="【动态规划】数字三角形"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【动态规划】数字三角形</div></div></a></div><div><a href="/posts/a999fe19.html" title="【动态规划】线性DP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【动态规划】线性DP</div></div></a></div><div><a href="/posts/bf2417df.html" title="【动态规划】背包问题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【动态规划】背包问题</div></div></a></div><div><a href="/posts/a45a25db.html" title="【动态规划】计数DP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【动态规划】计数DP</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Texcavator</div><div class="author-info__description">听一万种声音，但只成为自己</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Texcavator" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/dhxbshbdjzxy?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="https://qm.qq.com/q/btFkIwqdKU" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%80%E5%A7%8B%EF%BC%9A%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text">问题的开始：最长上升子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%AA%E7%9B%97%E5%9F%BA%E5%BE%B7%E7%9A%84%E6%BB%91%E7%BF%94%E7%BF%BC"><span class="toc-number">2.</span> <span class="toc-text">怪盗基德的滑翔翼</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-number">2.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-number">2.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-number">2.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%99%BB%E5%B1%B1"><span class="toc-number">3.</span> <span class="toc-text">登山</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-number">3.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-number">3.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-number">3.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8B%E5%A5%BD%E5%9F%8E%E5%B8%82"><span class="toc-number">4.</span> <span class="toc-text">友好城市</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-number">4.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-number">4.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-number">4.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%AF%BC%E5%BC%B9"><span class="toc-number">5.</span> <span class="toc-text">拦截导弹</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-number">5.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-4"><span class="toc-number">5.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="toc-number">5.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E5%BC%B9%E9%98%B2%E5%BE%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">6.</span> <span class="toc-text">导弹防御系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-4"><span class="toc-number">6.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-5"><span class="toc-number">6.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-5"><span class="toc-number">6.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">7.</span> <span class="toc-text">最长公共上升子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-5"><span class="toc-number">7.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-6"><span class="toc-number">7.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-6"><span class="toc-number">7.3.</span> <span class="toc-text">代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2ec3d24c.html" title="【动态规划】最长上升子序列LIS">【动态规划】最长上升子序列LIS</a><time datetime="2023-11-09T13:22:24.000Z" title="发表于 2023-11-09 21:22:24">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/bb05dd2a.html" title="【动态规划】数字三角形">【动态规划】数字三角形</a><time datetime="2023-11-09T13:22:08.000Z" title="发表于 2023-11-09 21:22:08">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/a45a25db.html" title="【动态规划】计数DP">【动态规划】计数DP</a><time datetime="2023-11-09T13:21:56.000Z" title="发表于 2023-11-09 21:21:56">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/213c1d61.html" title="【动态规划】区间DP">【动态规划】区间DP</a><time datetime="2023-11-09T13:21:41.000Z" title="发表于 2023-11-09 21:21:41">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/bf2417df.html" title="【动态规划】背包问题">【动态规划】背包问题</a><time datetime="2023-11-09T13:21:27.000Z" title="发表于 2023-11-09 21:21:27">2023-11-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Texcavator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
