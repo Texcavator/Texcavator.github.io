@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【搜索】Flood Fill | Texcavator 的秘密基地</title><meta name="author" content="Texcavator"><meta name="copyright" content="Texcavator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="定义什么是 Flood Fill 算法？字面意思理解：洪水覆盖也就是说，下图的格子分为两大类，一类比较高一类比较低，现在从任意一处较低的格子开始灌水，下一次水将会覆盖它&#x3D;&#x3D;相邻的&#x3D;&#x3D;、&#x3D;&#x3D;较低的&#x3D;&#x3D;格子，依此类推这就相当于是BFS的思想（也可以用DFS实现，但BFS不会出现爆栈的问题） Flood Fill 算法可以在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【搜索】Flood Fill">
+<meta property="og:url" content="http://example.com/posts/de9f691a.html">
+<meta property="og:site_name" content="Texcavator 的秘密基地">
+<meta property="og:description" content="定义什么是 Flood Fill 算法？字面意思理解：洪水覆盖也就是说，下图的格子分为两大类，一类比较高一类比较低，现在从任意一处较低的格子开始灌水，下一次水将会覆盖它&#x3D;&#x3D;相邻的&#x3D;&#x3D;、&#x3D;&#x3D;较低的&#x3D;&#x3D;格子，依此类推这就相当于是BFS的思想（也可以用DFS实现，但BFS不会出现爆栈的问题） Flood Fill 算法可以在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-11-09T12:40:56.000Z">
+<meta property="article:modified_time" content="2023-11-09T12:46:49.378Z">
+<meta property="article:author" content="Texcavator">
+<meta property="article:tag" content="搜索">
+<meta property="article:tag" content="Flood Fill">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/posts/de9f691a.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【搜索】Flood Fill',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-09 20:46:49'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/zhuye.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Texcavator 的秘密基地"><span class="site-name">Texcavator 的秘密基地</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【搜索】Flood Fill</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-09T12:40:56.000Z" title="发表于 2023-11-09 20:40:56">2023-11-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-09T12:46:49.378Z" title="更新于 2023-11-09 20:46:49">2023-11-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【搜索】Flood Fill"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>什么是 Flood Fill 算法？<br>字面意思理解：洪水覆盖<br>也就是说，下图的格子分为两大类，一类比较高一类比较低，现在从任意一处较低的格子开始灌水，下一次水将会覆盖它&#x3D;&#x3D;相邻的&#x3D;&#x3D;、&#x3D;&#x3D;较低的&#x3D;&#x3D;格子，依此类推<br>这就相当于是BFS的思想（也可以用DFS实现，但BFS不会出现爆栈的问题）</p>
+<p><strong>Flood Fill 算法可以在线性时间复杂度内，找到某个点所在的连通块</strong></p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h2 id="池塘计数"><a href="#池塘计数" class="headerlink" title="池塘计数"></a>池塘计数</h2><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1099/">原题链接</a></p>
+<p>农夫约翰有一片 N∗M 的矩形土地。</p>
+<p>最近，由于降雨的原因，部分土地被水淹没了。</p>
+<p>现在用一个字符矩阵来表示他的土地。</p>
+<p>每个单元格内，如果包含雨水，则用”W”表示，如果不含雨水，则用”.”表示。</p>
+<p>现在，约翰想知道他的土地中形成了多少片池塘。</p>
+<p>每组相连的积水单元格集合可以看作是一片池塘。</p>
+<p>每个单元格视为与其上、下、左、右、左上、右上、左下、右下八个邻近单元格相连。</p>
+<p>请你输出共有多少片池塘，即矩阵中共有多少片相连的”W”块。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含两个整数 N 和 M。</p>
+<p>接下来 N 行，每行包含 M 个字符，字符为”W”或”.”，用以表示矩形土地的积水状况，字符之间没有空格。</p>
+<p><strong>输出格式</strong></p>
+<p>输出一个整数，表示池塘数目。</p>
+<p><strong>数据范围</strong><br>1 ≤ N, M ≤ 1000</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">10</span> <span class="number">12</span></span><br><span class="line">W........WW.</span><br><span class="line">.WWW.....WWW</span><br><span class="line">....WW...WW.</span><br><span class="line">.........WW.</span><br><span class="line">.........W..</span><br><span class="line">..W......W..</span><br><span class="line">.W.W.....WW.</span><br><span class="line">W.W.W.....W.</span><br><span class="line">.W.W......W.</span><br><span class="line">..W.......W.</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>模板题，问有多少连通块</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>按顺序遍历图上每一个点，如果这个点是洼地且未被遍历过，就在答案的基础上加1，并且标记这个连通块的所有点，直到遍历完整个图</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ft first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sd second</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>, M = N * N;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">char</span> g[N][N]; <span class="comment">// 存图</span></span><br><span class="line">queue&lt;PII&gt; q;</span><br><span class="line"><span class="type">bool</span> st[N][N]; <span class="comment">// 判重</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    q.<span class="built_in">push</span>(&#123;x, y&#125;);</span><br><span class="line">    st[x][y] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (q.<span class="built_in">size</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        PII t = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = t.ft - <span class="number">1</span>; i &lt;= t.ft + <span class="number">1</span>; i ++ )</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = t.sd - <span class="number">1</span>; j &lt;= t.sd + <span class="number">1</span>; j ++ )</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == t.ft &amp;&amp; j == t.sd) <span class="keyword">continue</span>; <span class="comment">// 正好遍历到当前点</span></span><br><span class="line">                <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= n || j &lt; <span class="number">0</span> || j &gt;= m) <span class="keyword">continue</span>; <span class="comment">// 位置不合法</span></span><br><span class="line">                <span class="keyword">if</span> (g[i][j] == <span class="string">&#x27;.&#x27;</span> || st[i][j]) <span class="keyword">continue</span>; <span class="comment">// 不是洼地或已遍历过</span></span><br><span class="line"></span><br><span class="line">                q.<span class="built_in">push</span>(&#123;i, j&#125;);</span><br><span class="line">                st[i][j] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>); cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) cin &gt;&gt; g[i];</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (g[i][j] == <span class="string">&#x27;W&#x27;</span> &amp;&amp; !st[i][j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">bfs</span>(i, j);</span><br><span class="line">                cnt ++ ;</span><br><span class="line">            &#125;</span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="城堡问题"><a href="#城堡问题" class="headerlink" title="城堡问题"></a>城堡问题</h2><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1100/">原题链接</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   1   2   3   4   5   6   7  </span><br><span class="line">  #############################</span><br><span class="line">1 #   |   #   |   #   |   |   #</span><br><span class="line">  #####---#####---#---#####---#</span><br><span class="line">2 #   #   |   #   #   #   #   #</span><br><span class="line">  #---#####---#####---#####---#</span><br><span class="line">3 #   |   |   #   #   #   #   #</span><br><span class="line">  #---#########---#####---#---#</span><br><span class="line">4 #   #   |   |   |   |   #   #</span><br><span class="line">  #############################</span><br><span class="line">             (图 1)</span><br><span class="line"></span><br><span class="line">  #  = Wall   </span><br><span class="line">  |  = No wall</span><br><span class="line">  -  = No wall</span><br><span class="line"></span><br><span class="line">  方向：上北下南左西右东。</span><br></pre></td></tr></table></figure>
+
+<p>图1是一个城堡的地形图。</p>
+<p>请你编写一个程序，计算城堡一共有多少房间，最大的房间有多大。</p>
+<p>城堡被分割成 m∗n 个方格区域，每个方格区域可以有0~4面墙。</p>
+<p>注意：墙体厚度忽略不计。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含两个整数 m 和 n，分别表示城堡南北方向的长度和东西方向的长度。</p>
+<p>接下来 m 行，每行包含 n 个整数，每个整数都表示平面图对应位置的方块的墙的特征。</p>
+<p>每个方块中墙的特征由数字 P 来描述，我们用1表示西墙，2表示北墙，4表示东墙，8表示南墙，P 为该方块包含墙的数字之和。</p>
+<p>例如，如果一个方块的 P 为3，则 3 &#x3D; 1 + 2，该方块包含西墙和北墙。</p>
+<p>城堡的内墙被计算两次，方块(1,1)的南墙同时也是方块(2,1)的北墙。</p>
+<p>输入的数据保证城堡至少有两个房间。</p>
+<p><strong>输出格式</strong></p>
+<p>共两行，第一行输出房间总数，第二行输出最大房间的面积（方块数）。</p>
+<p><strong>数据范围</strong></p>
+<p>1 ≤ m, n ≤ 50,<br>0 ≤ P ≤ 15</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span> <span class="number">7</span> </span><br><span class="line"><span class="number">11</span> <span class="number">6</span> <span class="number">11</span> <span class="number">6</span> <span class="number">3</span> <span class="number">10</span> <span class="number">6</span> </span><br><span class="line"><span class="number">7</span> <span class="number">9</span> <span class="number">6</span> <span class="number">13</span> <span class="number">5</span> <span class="number">15</span> <span class="number">5</span> </span><br><span class="line"><span class="number">1</span> <span class="number">10</span> <span class="number">12</span> <span class="number">7</span> <span class="number">13</span> <span class="number">7</span> <span class="number">5</span> </span><br><span class="line"><span class="number">13</span> <span class="number">11</span> <span class="number">10</span> <span class="number">8</span> <span class="number">10</span> <span class="number">12</span> <span class="number">13</span> </span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>给出一个城堡中每个房间四面是否有墙壁，输出该城堡有多少个连通的房间，最大的连通块面积是多少</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>和上一题基本一样，判断每个房间的四面墙壁情况，只是要额外加一个面积的计算</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">55</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ft first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sd second</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> g[N][N]; <span class="comment">// 存图</span></span><br><span class="line">queue&lt;PII&gt; q;</span><br><span class="line"><span class="type">bool</span> st[N][N]; <span class="comment">// 判重</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> area = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> dx[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;, dy[<span class="number">4</span>] = &#123;<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</span><br><span class="line">    q.<span class="built_in">push</span>(&#123;x, y&#125;);</span><br><span class="line">    st[x][y] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span> (q.<span class="built_in">size</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        PII t = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        area ++ ;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i ++ )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> a = t.ft + dx[i], b = t.sd + dy[i];</span><br><span class="line">            <span class="keyword">if</span> (a &lt; <span class="number">0</span> || a &gt;= n || b &lt; <span class="number">0</span> || b &gt;= m) <span class="keyword">continue</span>; <span class="comment">// 位置不合法</span></span><br><span class="line">            <span class="keyword">if</span> (st[a][b]) <span class="keyword">continue</span>; <span class="comment">// 已被遍历</span></span><br><span class="line">            <span class="keyword">if</span> (g[t.ft][t.sd] &gt;&gt; i &amp; <span class="number">1</span>) <span class="keyword">continue</span>; <span class="comment">// 这个方向是墙</span></span><br><span class="line"></span><br><span class="line">            q.<span class="built_in">push</span>(&#123;a, b&#125;);</span><br><span class="line">            st[a][b] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> area;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>); cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++ )</span><br><span class="line">            cin &gt;&gt; g[i][j];</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>, area = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (!st[i][j])</span><br><span class="line">            &#123;</span><br><span class="line">                area = <span class="built_in">max</span>(area, <span class="built_in">bfs</span>(i, j));</span><br><span class="line">                cnt ++ ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; <span class="string">&#x27;\n&#x27;</span> &lt;&lt; area;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="山峰和山谷"><a href="#山峰和山谷" class="headerlink" title="山峰和山谷"></a>山峰和山谷</h2><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1108/">原题链接</a></p>
+<p>FGD小朋友特别喜欢爬山，在爬山的时候他就在研究山峰和山谷。</p>
+<p>为了能够对旅程有一个安排，他想知道山峰和山谷的数量。</p>
+<p>给定一个地图，为FGD想要旅行的区域，地图被分为 n×n 的网格，每个格子 (i,j) 的高度 w(i,j) 是给定的。</p>
+<p>若两个格子有公共顶点，那么它们就是相邻的格子，如与 (i,j) 相邻的格子有(i−1,j−1),(i−1,j),(i−1,j+1),(i,j−1),(i,j+1),(i+1,j−1),(i+1,j),(i+1,j+1)。</p>
+<p>我们定义一个格子的集合 S 为山峰（山谷）当且仅当：</p>
+<ol>
+<li>S 的所有格子都有相同的高度。</li>
+<li>S 的所有格子都连通。</li>
+<li>对于 s 属于 S，与 s 相邻的 s′ 不属于 S，都有 ws&gt;ws′（山峰），或者 ws&lt;ws′（山谷）。</li>
+<li>如果周围不存在相邻区域，则同时将其视为山峰和山谷。</li>
+</ol>
+<p>你的任务是，对于给定的地图，求出山峰和山谷的数量，如果所有格子都有相同的高度，那么整个地图即是山峰，又是山谷。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含一个正整数 n，表示地图的大小。</p>
+<p>接下来一个 n×n 的矩阵，表示地图上每个格子的高度 w。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，包含两个整数，表示山峰和山谷的数量。</p>
+<p><strong>数据范围</strong></p>
+<p>1 ≤ n ≤ 1000,<br>0 ≤ w ≤ 109</p>
+<p><strong>输入样例1</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">8</span> <span class="number">8</span> <span class="number">8</span> <span class="number">7</span> <span class="number">7</span></span><br><span class="line"><span class="number">7</span> <span class="number">7</span> <span class="number">8</span> <span class="number">8</span> <span class="number">7</span></span><br><span class="line"><span class="number">7</span> <span class="number">7</span> <span class="number">7</span> <span class="number">7</span> <span class="number">7</span></span><br><span class="line"><span class="number">7</span> <span class="number">8</span> <span class="number">8</span> <span class="number">7</span> <span class="number">8</span></span><br><span class="line"><span class="number">7</span> <span class="number">8</span> <span class="number">8</span> <span class="number">8</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例1</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">2</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>输入样例2</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">5</span> <span class="number">7</span> <span class="number">8</span> <span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="number">5</span> <span class="number">5</span> <span class="number">7</span> <span class="number">6</span> <span class="number">6</span></span><br><span class="line"><span class="number">6</span> <span class="number">6</span> <span class="number">6</span> <span class="number">2</span> <span class="number">8</span></span><br><span class="line"><span class="number">5</span> <span class="number">7</span> <span class="number">2</span> <span class="number">5</span> <span class="number">8</span></span><br><span class="line"><span class="number">7</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例2</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">3</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><p>给出不同地块的高度，高度相同的连通块周边高度都小于等于该连通块高度，那么该连通块为山峰，反之为山谷，问山峰山谷数量</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>依旧是遍历每一个点，如果没有遍历过该点，就遍历该点所在连通块，直到找到连通块边界，再判断这个连通块是否为山峰或山谷</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>, M = N * N;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ft first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sd second</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> h[N][N];</span><br><span class="line">queue&lt;PII&gt; q;</span><br><span class="line"><span class="type">bool</span> st[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">bool</span>&amp; has_higher, <span class="type">bool</span>&amp; has_lower)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    q.<span class="built_in">push</span>(&#123;x, y&#125;);</span><br><span class="line">    st[x][y] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (q.<span class="built_in">size</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        PII t = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = t.ft - <span class="number">1</span>; i &lt;= t.ft + <span class="number">1</span>; i ++ )</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = t.sd - <span class="number">1</span>; j &lt;= t.sd + <span class="number">1</span>; j ++ )</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == t.ft &amp;&amp; j == t.sd) <span class="keyword">continue</span>; <span class="comment">// 遍历到自身</span></span><br><span class="line">                <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= n || j &lt; <span class="number">0</span> || j &gt;= n) <span class="keyword">continue</span>; <span class="comment">// 位置不合法</span></span><br><span class="line">                <span class="keyword">if</span> (h[i][j] != h[t.ft][t.sd]) <span class="comment">// 边界</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (h[i][j] &gt; h[t.ft][t.sd]) has_higher = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">else</span> has_lower = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (!st[i][j]) <span class="comment">// 非边界且未遍历</span></span><br><span class="line">                &#123;</span><br><span class="line">                    q.<span class="built_in">push</span>(&#123;i, j&#125;);</span><br><span class="line">                    st[i][j] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>); cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j ++ )</span><br><span class="line">            cin &gt;&gt; h[i][j];</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> peak = <span class="number">0</span>, valley = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i&lt; n; i ++ )</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (!st[i][j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">bool</span> has_higher = <span class="literal">false</span>, has_lower = <span class="literal">false</span>;</span><br><span class="line">                <span class="built_in">bfs</span>(i, j, has_higher, has_lower);</span><br><span class="line">                <span class="keyword">if</span> (!has_higher) peak ++ ;</span><br><span class="line">                <span class="keyword">if</span> (!has_lower) valley ++ ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; peak &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; valley &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Texcavator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/de9f691a.html">http://example.com/posts/de9f691a.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Texcavator 的秘密基地</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%90%9C%E7%B4%A2/">搜索</a><a class="post-meta__tags" href="/tags/Flood-Fill/">Flood Fill</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/46c8bf03.html" title="【搜索】DFS连通性模型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【搜索】DFS连通性模型</div></div></a></div><div class="next-post pull-right"><a href="/posts/922f99a.html" title="【搜索】BFS中的最短路模型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【搜索】BFS中的最短路模型</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/922f99a.html" title="【搜索】BFS中的最短路模型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【搜索】BFS中的最短路模型</div></div></a></div><div><a href="/posts/2e580918.html" title="【搜索】DFS剪枝与优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【搜索】DFS剪枝与优化</div></div></a></div><div><a href="/posts/7614fc0a.html" title="【搜索】DFS搜索顺序"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【搜索】DFS搜索顺序</div></div></a></div><div><a href="/posts/78aeb4cc.html" title="【搜索】DFS迭代加深与IDA*"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【搜索】DFS迭代加深与IDA*</div></div></a></div><div><a href="/posts/46c8bf03.html" title="【搜索】DFS连通性模型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【搜索】DFS连通性模型</div></div></a></div><div><a href="/posts/c90ca664.html" title="【搜索】双向DFS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-09</div><div class="title">【搜索】双向DFS</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Texcavator</div><div class="author-info__description">听一万种声音，但只成为自己</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Texcavator" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/dhxbshbdjzxy?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="https://qm.qq.com/q/btFkIwqdKU" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%A0%E5%A1%98%E8%AE%A1%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">池塘计数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-number">2.1.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">2.1.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.1.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%8E%E5%A0%A1%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">城堡问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-number">2.2.3.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%B1%E5%B3%B0%E5%92%8C%E5%B1%B1%E8%B0%B7"><span class="toc-number">2.3.</span> <span class="toc-text">山峰和山谷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-number">2.3.3.</span> <span class="toc-text">代码</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/c90ca664.html" title="【搜索】双向DFS">【搜索】双向DFS</a><time datetime="2023-11-09T12:42:25.000Z" title="发表于 2023-11-09 20:42:25">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/78aeb4cc.html" title="【搜索】DFS迭代加深与IDA*">【搜索】DFS迭代加深与IDA*</a><time datetime="2023-11-09T12:42:07.000Z" title="发表于 2023-11-09 20:42:07">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2e580918.html" title="【搜索】DFS剪枝与优化">【搜索】DFS剪枝与优化</a><time datetime="2023-11-09T12:41:51.000Z" title="发表于 2023-11-09 20:41:51">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/7614fc0a.html" title="【搜索】DFS搜索顺序">【搜索】DFS搜索顺序</a><time datetime="2023-11-09T12:41:26.000Z" title="发表于 2023-11-09 20:41:26">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/46c8bf03.html" title="【搜索】DFS连通性模型">【搜索】DFS连通性模型</a><time datetime="2023-11-09T12:41:12.000Z" title="发表于 2023-11-09 20:41:12">2023-11-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Texcavator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
