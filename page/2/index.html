@@ -54,7 +54,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-11-09 20:53:51'
+  postUpdate: '2023-11-09 21:20:04'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -172,103 +172,178 @@
     document.addEventListener('pjax:send', () => { preloader.initLoading() })
     document.addEventListener('pjax:complete', () => { preloader.endLoading() })
   }
-})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/zhuye.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Texcavator 的秘密基地"><span class="site-name">Texcavator 的秘密基地</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Texcavator 的秘密基地</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Texcavator" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/dhxbshbdjzxy?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="https://qm.qq.com/q/btFkIwqdKU" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/63fc9272.html" title="【数据结构】线段树">【数据结构】线段树</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T11:54:39.000Z" title="发表于 2023-11-09 19:54:39">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">原理&#x3D;&#x3D;时间复杂度：O(logn)&#x3D;&#x3D;
-线段树是一棵二叉树，把一段区间分成多个部分
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">40</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/zhuye.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Texcavator 的秘密基地"><span class="site-name">Texcavator 的秘密基地</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Texcavator 的秘密基地</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Texcavator" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/dhxbshbdjzxy?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="https://qm.qq.com/q/btFkIwqdKU" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/c90ca664.html" title="【搜索】双向DFS">【搜索】双向DFS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:42:25.000Z" title="发表于 2023-11-09 20:42:25">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="content">双向BFS和前面的双向DFS思路基本一样，都是为了从两端搜索从而避免搜索中间一大块复杂的情况
+送礼物原题链接
+达达帮翰翰给女生送礼物，翰翰一共准备了 $N$ 个礼物，其中第 i 个礼物的重量是 $G[i]$。
+达达的力气很大，他一次可以搬动重量之和不超过 $W$ 的任意多个物品。
+达达希望一次搬掉尽量重的一些物品，请你告诉达达在他的力气范围内一次性能搬动的最大重量是多少。
+输入格式
+第一行两个整数，分别代表 $W$ 和 $N$。
+以后 $N$ 行，每行一个正整数表示 $G[i]$。
+输出格式
+仅一个整数，表示达达在他的力气范围内一次性能搬动的最大重量。
+数据范围
+$1 ≤ N ≤ 46,$$1 ≤ W , G[i] ≤ 2^{31}−1$
+输入样例
+20 5754181
+输出样例
+19
+题意给出背包体积和每个物品体积，问一次最多装多少物品
+思路看数据范围判断背包问题一定会TLE，但N范围比较小，因此使用爆搜，把所有可能方案枚举一遍，取一个最大值但是直接爆搜，时间复杂度 2^46^，也是会超时的
+优化——双向DFS 用空间换时间先枚举前一半数能凑出来的集合，再枚举后一半数，然后在两个集合 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/78aeb4cc.html" title="【搜索】DFS迭代加深与IDA*">【搜索】DFS迭代加深与IDA*</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:42:07.000Z" title="发表于 2023-11-09 20:42:07">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="content">迭代加深搜索时可能会遇到这样一种情况：
 
-类似堆的方式，用一维数组存整棵树
-对于编号x的结点：
+明明答案就在第一层！但是因为DFS的缘故浪费很多时间迭代加深就是用来解决这个问题的算法
+定义一个 max_depth ，每次搜索时，超过这一层就全部剪掉、（相当于我们划定一个区域，在这个区域内找解，如果找不到，再扩大区域）
+？迭代加深和BFS有什么区别呢BFS用队列存储，浪费空间，迭代加深本质是还是DFS，只存储本条路径，还是O(n)的算法
+例题加成序列原题链接
+满足如下条件的序列 X（序列中元素被标号为 1、2、3…m）被称为“加成序列”：
 
-父结点 $\lfloor x \rfloor$，表示为 x &gt;&gt; 1
-左子树 $2x$，表示为 x &lt;&lt; 1
-右子树 $2x+1$，表示为 x &lt;&lt; 1 | 1
+$X[1]&#x3D;1$
+$X[m]&#x3D;n$
+$X[1]&lt;X[2]&lt;…&lt;X[m−1]&lt;X[m]$
+对于每个 k（2 ≤ k ≤ m）都存在两个整数 i 和 j （1 ≤ i , j ≤ k − 1，i 和 j 可相等），使得 $X[k]&#x3D;X[i]+X[j]$。
 
-对于长度为n的区间，最坏估计有 $4n-1$ 个结点，因此 &#x3D;&#x3D;开数组时空间一般开 $4n$&#x3D;&#x3D;
-pushup由子结点计算父结点的信息
-模板：
-// u表示当前树中结点编号 lr表示树中结点左右子结点void pushup(Node &amp;u, Node &amp;l, Node &amp;r)&#123;    /* 此处用[l]和[r]的值更新[u] */&#125;void pushup(int u)&#123;    pushup(tr[u], tr[u &lt;&lt; 1], tr[u &lt;&lt; 1 | 1]);&#125;
-build将一段区间初 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/b289bb13.html" title="【数据结构】树状数组">【数据结构】树状数组</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T11:53:08.000Z" title="发表于 2023-11-09 19:53:08">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">参考：https://zhuanlan.zhihu.com/p/574739597
-树状数组主要是支持两种操作：
+你的任务是：给定一个整数 n，找出符合上述条件的长度 m 最小的“加成序列”。
+如果有多个满足要求的答案，只需要找出任意一个可行解。
+输入格式
+输入包含多组测试用例。
+每组测试用例占据一行，包含一个整 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2e580918.html" title="【搜索】DFS剪枝与优化">【搜索】DFS剪枝与优化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:41:51.000Z" title="发表于 2023-11-09 20:41:51">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="content">剪枝是什么意思呢？
+我们知道，不管是内部搜索还是外部搜索，都可以形成一棵搜索树，如果将搜索树全部遍历一遍，效率会很低，但如果我们能在搜索的过程中，提前预知，判断某一些不可能是正确答案的情况，就可以不用遍历其下的子树，从而提高我们的算法效率
+我们可以从以下几个角度考虑剪枝：
 
-单点修改
-区间查询
+优化搜索顺序优先选择分支较少的结点
+排除等效冗余尽量保证不搜索重复的状态（就是在不考虑顺序时，采用组合的方式搜索）
+可行性剪枝不合法提前退出
+最优性剪枝如果当前答案无论如何都比目前的最优解要差，那就可以不要往下搜了
+记忆化搜索（DP）
 
-这两个操作的时间复杂度都是 O(logn)根据前缀和的原理，任意一段区间求和都可以转换成两个前缀和的差，因此区间求和问题转换成求前缀和问题
-前提准备：计算 lowbit在此我们定义一个 lowbit(x) ，表示 x 的最末尾一个 1 与这个 1 后面的所有 0 组成的二进制数lowbit(x) 应该怎么实现呢？很简单，这里直接给出结论 lowbit(x) = x &amp; -x还是通过例子来说明
+接下来将通过例题来讲解
+小猫爬山原题链接
+翰翰和达达饲养了 N 只小猫，这天，小猫们要去爬山。
+经历了千辛万苦，小猫们终于爬上了山顶，但是疲倦的它们再也不想徒步走下山了（呜咕&gt;_&lt;）。
+翰翰和达达只好花钱让它们坐索道下山。
+索道上的缆车最大承重量为 W，而 N 只小猫的重量分别是 C1、C2……CN。
+当然，每辆缆车上的小猫的重量之和不能超过 W。
+每租用一辆缆车，翰翰和达达就要付 1 美元，所以他们想知道，最少需要付多少美元才能把这 N 只小猫都运送下山？
+输入格式
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/7614fc0a.html" title="【搜索】DFS搜索顺序">【搜索】DFS搜索顺序</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:41:26.000Z" title="发表于 2023-11-09 20:41:26">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="content">马走日原题链接
+马在中国象棋以日字形规则移动。
+请编写一段程序，给定 n∗m 大小的棋盘，以及马的初始位置 (x，y)，要求不能重复经过棋盘上的同一个点，计算马可以有多少途径遍历棋盘上的所有点。
+输入格式
+第一行为整数 T，表示测试数据组数。
+每一组测试数据包含一行，为四个整数，分别为棋盘的大小以及初始位置坐标 n,m,x,y。
+输出格式
+每组测试数据包含一行，为一个整数，表示马能遍历棋盘的途径总数，若无法遍历棋盘上的所有点则输出 0。
+数据范围
+1 ≤ T ≤ 9,1 ≤ m , n ≤9,1 ≤ n × m ≤ 28,0 ≤ x ≤ n − 1,0 ≤ y ≤ m − 1
+输入样例
+15 4 0 0
+输出样例
+32
+题意给出矩阵大小，给出马的初始位置，马只能走日。问有多少种方案让马可以遍历完棋盘上的所有点，每种方案里不可以重复经过两个点
+思路这就是典型的外部搜索，是不同状态之间的搜索，因此每次需要恢复现场（可以理解为悔棋）
+代码#include &lt;bits/stdc++.h&gt;using namespace std;const int N = 10;int n, m;bo ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/46c8bf03.html" title="【搜索】DFS连通性模型">【搜索】DFS连通性模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:41:12.000Z" title="发表于 2023-11-09 20:41:12">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="content">DFS 的搜索分为两大部分：
 
-现有二进制数 101100x &#x3D; 101100反码：010011补码：010100
+内部搜索：一个图中从一个点搜到另一个点
+外部搜索：从一张图（状态）搜到另一张图（状态）
 
-可以注意到，-x 是 x 末尾的一个 1 到结束的 0 不动，前面全部取反的结果那么 x &amp; -x 就只保留了末尾的 1 和后面的 0因此得到我们的 lowbit 函数：
-int lowbit(int x)&#123;	return x &amp; -x;&#125;
-树状数组的含义我们定义原数组为a，用一个数组 tree 维护若干个小区间，tree ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2e7813af.html" title="【数据结构】并查集">【数据结构】并查集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T11:47:46.000Z" title="发表于 2023-11-09 19:47:46">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">今天补题遇到了这个知识点，能想到这个方法但是自己没办法实现，所以来复习一下相关知识做个总结~
-并查集，简单来说，就是合并两个集合，然后能迅速判断两个元素是否在同一集合中板子返回 x 的祖先结点，同时进行路径压缩，让 p[x] 直接指向祖先结点
-int find(int x)&#123;    if (p[x] != x) p[x] = find(p[x]);    return p[x];&#125;
-实现方法：首先所有元素各为一个集合，创建数组 p[i]，意为 i 的父结点，起初，p[i] 全部等于 i 
+在第一个部分里是图内部点的搜索，每个点只能搜一次，因此搜过的点不需要恢复到原来的（还没被搜过的）状态（意思就是st数组不恢复）
+而第二个部分是点的集合之间的搜索，每次搜索完一定要恢复到原有状态才可以进行下一步搜索（意思就是st数组每次需要恢复原状）
+迷宫原题链接
+一天Extense在森林里探险的时候不小心走入了一个迷宫，迷宫可以看成是由 n∗n 的格点组成，每个格点只有2种状态，.和#，前者表示可以通行后者表示不能通行。
+同时当Extense处在某个格点时，他只能移动到东南西北(或者说上下左右)四个方向之一的相邻格点上，Extense想要从点A走到点B，问在不走出迷宫的情况下能不能办到。
+如果起点或者终点有一个不能通行(为#)，则看成无法办到。
+注意：A、B不一定是两个不同的点。
+输入格式
+第1行是测试数据的组数 k，后面跟着 k 组输入。
+每组测试数据的第1行是一个正整数 n，表示迷宫的规模是 n∗n 的。
+接下来是一个 n∗n 的矩阵，矩阵中的元素为.或者#。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/de9f691a.html" title="【搜索】Flood Fill">【搜索】Flood Fill</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:40:56.000Z" title="发表于 2023-11-09 20:40:56">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="content">定义什么是 Flood Fill 算法？字面意思理解：洪水覆盖也就是说，下图的格子分为两大类，一类比较高一类比较低，现在从任意一处较低的格子开始灌水，下一次水将会覆盖它&#x3D;&#x3D;相邻的&#x3D;&#x3D;、&#x3D;&#x3D;较低的&#x3D;&#x3D;格子，依此类推这就相当于是BFS的思想（也可以用DFS实现，但BFS不会出现爆栈的问题）
+Flood Fill 算法可以在线性时间复杂度内，找到某个点所在的连通块
+例题池塘计数原题链接
+农夫约翰有一片 N∗M 的矩形土地。
+最近，由于降雨的原因，部分土地被水淹没了。
+现在用一个字符矩阵来表示他的土地。
+每个单元格内，如果包含雨水，则用”W”表示，如果不含雨水，则用”.”表示。
+现在，约翰想知道他的土地中形成了多少片池塘。
+每组相连的积水单元格集合可以看作是一片池塘。
+每个单元格视为与其上、下、左、右、左上、右上、左下、右下八个邻近单元格相连。
+请你输出共有多少片池塘，即矩阵中共有多少片相连的”W”块。
+输入格式
+第一行包含两个整数 N 和 M。
+接下来 N 行，每行包含 M 个字符，字符为”W”或”.”，用以表示 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/922f99a.html" title="【搜索】BFS中的最短路模型">【搜索】BFS中的最短路模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:40:36.000Z" title="发表于 2023-11-09 20:40:36">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="content">BFS可以解决边权为1的最短路问题，下面是相关例题
+单源最短路将源点在开始时存进队列
+迷宫问题原题链接
+给定一个 n×n 的二维数组，如下所示：
+int maze[5][5] = &#123;0, 1, 0, 0, 0,0, 1, 0, 1, 0,0, 0, 0, 0, 0,0, 1, 1, 1, 0,0, 0, 0, 1, 0,&#125;;
+它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。
+数据保证至少存在一条从左上角走到右下角的路径。
+输入格式
+第一行包含整数 n。
+接下来 n 行，每行包含 n 个整数 0 或 1，表示迷宫。
+输出格式
+输出从左上角到右下角的最短路线，如果答案不唯一，输出任意一条路径均可。
+按顺序，每行输出一个路径中经过的单元格的坐标，左上角坐标为 (0,0)，右下角坐标为 (n−1,n−1)。
+数据范围
+0 ≤ n ≤ 1000
+输入样例
+50 1 0 0 00 1 0 1 00 0 0 0 00 1 1 1 00 0 0 1 0
+输出样例
+0 01 02 02 12 22 32 4 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/e9a0dd50.html" title="【搜索】最小步数（双向广搜与A*算法）">【搜索】最小步数（双向广搜与A*算法）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:40:17.000Z" title="发表于 2023-11-09 20:40:17">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%90%9C%E7%B4%A2/">搜索</a></span></div><div class="content">最小步数魔板原题链接
+Rubik 先生在发明了风靡全球的魔方之后，又发明了它的二维版本——魔板。
+这是一张有 8 个大小相同的格子的魔板：
+1 2 3 48 7 6 5
+我们知道魔板的每一个方格都有一种颜色。
+这 8 种颜色用前 8 个正整数来表示。
+可以用颜色的序列来表示一种魔板状态，规定从魔板的左上角开始，沿顺时针方向依次取出整数，构成一个颜色序列。
+对于上图的魔板状态，我们用序列 (1,2,3,4,5,6,7,8) 来表示，这是基本状态。
+这里提供三种基本操作，分别用大写字母 A，B，C 来表示（可以通过这些操作改变魔板的状态）：
+A：交换上下两行；B：将最右边的一列插入到最左边；C：魔板中央对的4个数作顺时针旋转。
+下面是对基本状态进行操作的示范：
+A：
+8 7 6 51 2 3 4
+B：
+4 1 2 35 8 7 6
+C：
+1 7 2 48 6 3 5
+对于每种可能的状态，这三种基本操作都可以使用。
+你要编程计算用最少的基本操作完成基本状态到特殊状态的转换，输出基本操作序列。
+注意：数据保证一定有解。
+输入格式
+输入仅一行，包括 8 个整数，用空格分开，表示目标状态。
+输出格 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3dab568c.html" title="【数据结构】莫队">【数据结构】莫队</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:36:19.000Z" title="发表于 2023-11-09 20:36:19">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">这篇博客起源于本人把一道 $pow(2,n)$ 的问题考虑成求组合数前缀和的问题qwq，于是接触到了这个新算法来总结一下
+参考自这篇文章，写得太好了
+首先是一道模板题
+题目意思是，给出一个数组a，再给出多个区间，问这些区间里分别有多少不一样的数字
+焗个栗子：
 
-当两个元素 a b 进行合并时（实际上就是两个集合进行合并），让 a 的祖先结点的父结点等于 b 的祖先结点，a 的祖先结点直接指向 b 的祖先结点p[find(a)] = find(b);
-当询问两个元素 a b 是否在同一个集合中时，只需要看 a b 的祖先结点是不是同一个，也就是判断 find(a) &#x3D;&#x3D; find(b) 是否成立
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4befabc3.html" title="【C++】位运算">【C++】位运算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T11:33:00.000Z" title="发表于 2023-11-09 19:33:00">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span></div><div class="content">因为对位运算实在是太太太太太不熟悉了！所以每次遇到位运算相关的题都要卡好久才能把题目意思转化成容易理解的样子，今晚又被卡了所以一怒之下总结一篇等下次被卡就来翻翻qwq
-与 &amp;翻译：同为1取1，只要有0就取0
-
-可以用&amp;来取每一位上的数，如果要判断n的第三位是否为1，就进行 $n$ &amp; $2^{3-1}$ 运算，如果结果为 $2^{3-1}$ ，就说明当前判断的位数上是1，结果是0，就说明当前判断的位数上是0
-判断奇偶a &amp; 1 == 1 a为奇数a &amp; 1 == 0 a为偶数
-
-或 | （OR）翻译：有1取1，无1取0
-
-一个数对另一个数进行 | 操作，当前位上是0将不产生任何影响，当前位上是1将会把对应位上变成1
-把一个数变成最接近的偶数：a = a | 1 - 1
-
-异或 ^ （XOR）翻译：相同为0，不同为1
-
-一个数和本身进行异或运算得到结果为0
-一个数和0进行异或运算得到结果为本身
-上两条推出：奇数个相同的数异或运算得到结果为本身，偶数个相同的数异或运算得到结果为0
-
-左移 &lt;&lt;翻译：a &lt;&lt; b = a x 2 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/5ccba1a0.html" title="【基础算法】逆序对">【基础算法】逆序对</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T11:18:05.000Z" title="发表于 2023-11-09 19:18:05">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a></span></div><div class="content">逆序对，简单来说，就是i &gt; j*，但a[i] &lt; a[j]，那么a[i] 和 a[j]就是一组逆序对
-求逆序对有三种方式——
-
-暴力 复杂度 O(n^2^) 谁用谁T 不多赘述了
-归并排序 复杂度 O(nlogn)
-树状数组 复杂度 O(nlogn)
-
-归并排序
-首先看一下归并排序的原理，就是将一个序列无限二分，直到每一部分都只有一个元素，这时每一部分都有序，然后逐次合并相邻部分，让合并后的各个部分有序举个栗子现在我们要合并两个部分：1 3 5 7 9 | 2 4 6 8 10先比较 1、2，发现 1 &lt; 2，所以把 1 先放到合并后的数组里现在剩下的两部分是：3 5 7 9 | 2 4 6 8 10现在比较3、2，发现 3 &gt; 2，所以把 2 放到合并后的数组，由于左半部分是有序的，所以 2 小于左半部分剩下的所有数，但 2 又在左半边剩下的所有数后面，所以 2 和这些数都构成逆序对，逆序对的数量就是mid - i每一次右半部分的第一个数小于左半部分的第一个数时，右半部分的第一个数和左半部分剩下的所有数都构成逆序对，因此在原来的基础上加上mid - i即可
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/470a5ef6.html" title="【基础算法】前缀和与差分">【基础算法】前缀和与差分</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T11:17:45.000Z" title="发表于 2023-11-09 19:17:45">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a></span></div><div class="content">前缀和一维一维数组中，计算出所有前 n 个数的和，存储在一个单独的数组里，便于后续计算
-板子s[0] = 0;for (int i = 1; i &lt;= n; i ++ )&#123;    scanf(&quot;%d&quot;, &amp;a[i]);    s[i] = s[i - 1] + a[i];&#125;
-s[i] 计算的就是前 i 个数的和当我们需要计算第 l 个数到第 r 个数的和时，只需要用 s[r] - s[l - 1] 即可
-二维二维数组中，计算出长为 0 - l， 宽为 0 - r 的矩阵和这个值等于长为 0 - (l - 1) 宽为 0 - r 的矩阵加上 长为 0 - l 宽为 0 - (r - 1) 的矩阵减去 长为 0 - (l - 1) 宽为 0 - (r - 1)的矩阵 最后加上该位置的值
-板子for (int i = 1; i &lt;= n; i ++ )&#123;    for (int j = 1; j &lt;= m; j ++ )    &#123;        s[i][j] = s[i - 1][j] + s[i][j  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/40a4a6dc.html" title="【基础算法】高精度">【基础算法】高精度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T11:15:44.000Z" title="发表于 2023-11-09 19:15:44">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a></span></div><div class="content">当比赛中给定数字位数过多，无法直接进行加减乘除运算时，使用高精度计算
-高精度加法高精度加法相当于一个列竖式计算的过程，从最低位开始（因此所有数都要倒着存），遇十进位
-板子vector&lt;int&gt; add(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)&#123;    vector&lt;int&gt; C; // 计算结果    int t = 0; //记录进位    for (int i = 0; i &lt; A.size() || i &lt; B.size(); i ++ ) // 就是一个竖式计算的过程    &#123;        if (i &lt; A.size()) t += A[i];        if (i &lt; B.size()) t += B[i];        C.push_back(t % 10);        t /= 10;    &#125;    if (t) C.push_back(1);    return C;&#125;int main()&#123;    ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/91181467.html" title="【基础算法】二分">【基础算法】二分</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T11:05:07.000Z" title="发表于 2023-11-09 19:05:07">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a></span></div><div class="content">二分适用于满足二段性的序列，当一个序列中一段满足条件，另一段不满足条件时可以考虑使用二分来加快查找速度
-板子// x 是需要查找的数int l = 0, r = n - 1;while (l &lt; r)&#123;	int mid = l + r &gt;&gt; 1;    if (q[mid] &gt;= x) r = mid; // 符号按需要更改    else l = mid + 1;&#125;return r;
-符号判断二分中使用什么符号曾经困扰了我很久，现总结如下：大原则：搞不清就带等号，带等号的时候和字面理解意思相同其中，以下两个式子表示含义相同：
-
-&gt;&#x3D; 会输出满足大于等于条件的第一个数
-&lt; 会输出从后往前看不满足小于条件的第一个数
-
-以下两个式子表示含义相同：
-
-&lt;&#x3D; 会输出从后往前看满足小于等于条件的第一个数
-&gt;  会输出不满足条件的最后一个数
-
-举个栗子
-
-现有如下序列：1 2 3 4 5 5 5 6 7 8 9
-
-现需查找 “5” ——
-
-当使用 &gt;&#x3D; 时，找到的是第 1 个 5
-当使用 &lt ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4a17b156.html" title="写在前面的话">写在前面的话</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-07T10:08:11.503Z" title="发表于 2023-11-07 18:08:11">2023-11-07</time></span></div><div class="content">欢迎来到 Texcavator 的 Blog！
-这里将记录下我学习过程中的笔记和心得
-没想好这里还要写什么，之后再来补充啦~
-</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Texcavator</div><div class="author-info__description">听一万种声音，但只成为自己</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Texcavator" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/dhxbshbdjzxy?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="https://qm.qq.com/q/btFkIwqdKU" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/c90ca664.html" title="【搜索】双向DFS">【搜索】双向DFS</a><time datetime="2023-11-09T12:42:25.000Z" title="发表于 2023-11-09 20:42:25">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/78aeb4cc.html" title="【搜索】DFS迭代加深与IDA*">【搜索】DFS迭代加深与IDA*</a><time datetime="2023-11-09T12:42:07.000Z" title="发表于 2023-11-09 20:42:07">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2e580918.html" title="【搜索】DFS剪枝与优化">【搜索】DFS剪枝与优化</a><time datetime="2023-11-09T12:41:51.000Z" title="发表于 2023-11-09 20:41:51">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/7614fc0a.html" title="【搜索】DFS搜索顺序">【搜索】DFS搜索顺序</a><time datetime="2023-11-09T12:41:26.000Z" title="发表于 2023-11-09 20:41:26">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/46c8bf03.html" title="【搜索】DFS连通性模型">【搜索】DFS连通性模型</a><time datetime="2023-11-09T12:41:12.000Z" title="发表于 2023-11-09 20:41:12">2023-11-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+比如给出的是这样一个数组，询问的两个区间是红色和绿色标注的区间
+如果我们分别遍历每一个区间，复杂度就太高了，因此就有大佬提出这样一种算法——
+首先定义双指针 $l$、$r$，初始化为 $l&#x3D;0,r&#x3D;-1$（表示此时区间内没有任何元素），然后用unorderd_map&lt;int, int&gt; map存储当前区间内每个元素的个数
+看我们要求的第一个区间 $[0,5]$
+$l$ 此时等于$0$，和所求区间的左端点相同，因此无需移动
+$r$ 此时等于$-1$，在所求区间右端点的左侧，因此需要向右移
+首先向右移一位变成 $0$，此时区间内添加了一个元素 5,因为map[5] = 0，元素5不存在于原来的区间里，因此元素种类数cnt加一，map[5] ++ 
+然后 $r$ 再右移一位变成 1，此时区间内添加了一个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/7527e30.html" title="【数据结构】ST表与RMQ算法">【数据结构】ST表与RMQ算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-09T12:36:05.000Z" title="发表于 2023-11-09 20:36:05">2023-11-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">本文参考【朝夕的ACM笔记】数据结构-ST表
+在练习线段树的过程中经常会感叹代码怎么这么长啊啊啊懒标记怎么这么难传啊啊啊
+于是在得知有一种代码量远小于线段树的算法时、、、（其实是因为做到了[SCOI2007] 降雨量
+就是ST表啦~
+在什么情况下可以用ST表代替线段树呢？
+&#x3D;&#x3D;不需要区间修改&#x3D;&#x3D;的&#x3D;&#x3D;可重复贡献问题&#x3D;&#x3D;
+不需要区间修改很好理解，什么叫做可重复贡献呢？
+我们知道，求一个数组的最大值（比如说长度为10的数组），我们可以先求前六个数的最大值，再求后七个数的最大值，最后求这两个最大值的最大值，虽然这中间有重复的元素，但是对最终的最大值结果不会有影响，这就叫做可重复贡献问题。
+但是如果我们要求一个数组中所有元素的和（还是比如说长度为10的数组），我们就不能用前六个元素的和加上后七个元素的和了，这就叫做不可重复贡献问题。
+常见的可重复贡献问题包括：求区间最大&#x2F;小值，区间按位和&#x2F;或，区间gcd…
+怎么构建ST表呢？
+ST表是一种基于倍增算法的数据结构
+我们设f[i][j]表示区间 $[ ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Texcavator</div><div class="author-info__description">听一万种声音，但只成为自己</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">40</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Texcavator" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/dhxbshbdjzxy?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="https://qm.qq.com/q/btFkIwqdKU" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/77f9f026.html" title="【图论】判环问题">【图论】判环问题</a><time datetime="2023-11-09T12:57:43.000Z" title="发表于 2023-11-09 20:57:43">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/545a0610.html" title="【图论】有向图的强连通分量">【图论】有向图的强连通分量</a><time datetime="2023-11-09T12:57:18.000Z" title="发表于 2023-11-09 20:57:18">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/33ca34cf.html" title="【图论】SPFA求负环">【图论】SPFA求负环</a><time datetime="2023-11-09T12:57:00.000Z" title="发表于 2023-11-09 20:57:00">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/a428212b.html" title="【图论】最小生成树">【图论】最小生成树</a><time datetime="2023-11-09T12:56:45.000Z" title="发表于 2023-11-09 20:56:45">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/15c63d49.html" title="【图论】Floyd">【图论】Floyd</a><time datetime="2023-11-09T12:56:32.000Z" title="发表于 2023-11-09 20:56:32">2023-11-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">基础算法</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%90%9C%E7%B4%A2/"><span class="card-category-list-name">搜索</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="card-category-list-name">数据结构</span><span class="card-category-list-count">5</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/cpp/" style="font-size: 1.1em; color: #999">cpp</a> <a href="/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" style="font-size: 1.1em; color: #999">广度优先搜索</a> <a href="/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/" style="font-size: 1.1em; color: #999">逆序对</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 1.1em; color: #999">ST表</a> <a href="/tags/%E5%B7%AE%E5%88%86/" style="font-size: 1.1em; color: #999">差分</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" style="font-size: 1.37em; color: #99a4b2">深度优先搜索</a> <a href="/tags/Flood-Fill/" style="font-size: 1.1em; color: #999">Flood Fill</a> <a href="/tags/A/" style="font-size: 1.1em; color: #999">A*</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 1.1em; color: #999">最短路</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.37em; color: #99a4b2">数据结构</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 1.1em; color: #999">前缀和</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 1.1em; color: #999">位运算</a> <a href="/tags/BFS/" style="font-size: 1.1em; color: #999">BFS</a> <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/" style="font-size: 1.1em; color: #999">迭代加深</a> <a href="/tags/IDA/" style="font-size: 1.1em; color: #999">IDA*</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 1.1em; color: #999">线段树</a> <a href="/tags/%E5%8F%8C%E5%90%91%E5%B9%BF%E6%90%9C/" style="font-size: 1.1em; color: #999">双向广搜</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 1.23em; color: #999ea6">基础算法</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E6%AD%A5%E6%95%B0/" style="font-size: 1.1em; color: #999">最小步数</a> <a href="/tags/%E5%89%AA%E6%9E%9D/" style="font-size: 1.1em; color: #999">剪枝</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 1.1em; color: #999">树状数组</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 1.5em; color: #99a9bf">搜索</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.1em; color: #999">并查集</a> <a href="/tags/RMQ/" style="font-size: 1.1em; color: #999">RMQ</a> <a href="/tags/C/" style="font-size: 1.1em; color: #999">C++</a> <a href="/tags/DFS/" style="font-size: 1.37em; color: #99a4b2">DFS</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 1.1em; color: #999">莫队</a> <a href="/tags/%E9%AB%98%E7%B2%BE%E5%BA%A6/" style="font-size: 1.1em; color: #999">高精度</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 1.1em; color: #999">二分</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/" style="font-size: 1.1em; color: #999">连通性</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">19</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">32.2k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-11-09T12:53:51.502Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Texcavator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9B%BE%E8%AE%BA/"><span class="card-category-list-name">图论</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">基础算法</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%90%9C%E7%B4%A2/"><span class="card-category-list-name">搜索</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="card-category-list-name">数据结构</span><span class="card-category-list-count">5</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/RMQ/" style="font-size: 1.1em; color: #999">RMQ</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 1.1em; color: #999">ST表</a> <a href="/tags/Floyd/" style="font-size: 1.1em; color: #999">Floyd</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 1.1em; color: #999">连通分量</a> <a href="/tags/A/" style="font-size: 1.1em; color: #999">A*</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/" style="font-size: 1.1em; color: #999">连通性</a> <a href="/tags/LCA/" style="font-size: 1.1em; color: #999">LCA</a> <a href="/tags/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" style="font-size: 1.1em; color: #999">最近公共祖先</a> <a href="/tags/%E7%8E%AF/" style="font-size: 1.1em; color: #999">环</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 1.1em; color: #999">莫队</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 1.1em; color: #999">二分图</a> <a href="/tags/Flood-Fill/" style="font-size: 1.1em; color: #999">Flood Fill</a> <a href="/tags/cpp/" style="font-size: 1.1em; color: #999">cpp</a> <a href="/tags/%E5%8F%8C%E5%90%91%E5%B9%BF%E6%90%9C/" style="font-size: 1.1em; color: #999">双向广搜</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 1.1em; color: #999">二分</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 1.4em; color: #99a5b6">搜索</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E6%AD%A5%E6%95%B0/" style="font-size: 1.1em; color: #999">最小步数</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 1.2em; color: #999da3">基础算法</a> <a href="/tags/%E5%89%AA%E6%9E%9D/" style="font-size: 1.1em; color: #999">剪枝</a> <a href="/tags/%E9%AB%98%E7%B2%BE%E5%BA%A6/" style="font-size: 1.1em; color: #999">高精度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.3em; color: #99a1ac">数据结构</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" style="font-size: 1.3em; color: #99a1ac">深度优先搜索</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" style="font-size: 1.1em; color: #999">最小生成树</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 1.1em; color: #999">前缀和</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 1.1em; color: #999">树状数组</a> <a href="/tags/DFS/" style="font-size: 1.3em; color: #99a1ac">DFS</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1.5em; color: #99a9bf">图论</a> <a href="/tags/SPFA/" style="font-size: 1.1em; color: #999">SPFA</a> <a href="/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/" style="font-size: 1.1em; color: #999">逆序对</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 1.2em; color: #999da3">最短路</a> <a href="/tags/C/" style="font-size: 1.1em; color: #999">C++</a> <a href="/tags/IDA/" style="font-size: 1.1em; color: #999">IDA*</a> <a href="/tags/%E5%B7%AE%E5%88%86/" style="font-size: 1.1em; color: #999">差分</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 1.1em; color: #999">线段树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.1em; color: #999">并查集</a> <a href="/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" style="font-size: 1.1em; color: #999">广度优先搜索</a> <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/" style="font-size: 1.1em; color: #999">迭代加深</a> <a href="/tags/%E8%B4%9F%E7%8E%AF/" style="font-size: 1.1em; color: #999">负环</a> <a href="/tags/BFS/" style="font-size: 1.1em; color: #999">BFS</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 1.1em; color: #999">位运算</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">29</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">29</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">71.2k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-11-09T13:20:04.174Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Texcavator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
   init: (str) => {
     window.typed = new Typed('#subtitle', Object.assign({
       strings: str,
