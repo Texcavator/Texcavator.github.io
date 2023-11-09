@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【基础算法】二分</title>
+    <url>/posts/91181467.html</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h1><p>二分适用于满足二段性的序列，当一个序列中一段满足条件，另一段不满足条件时可以考虑使用二分来加快查找速度</p>
+<h2 id="板子"><a href="#板子" class="headerlink" title="板子"></a>板子</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// x 是需要查找的数</span></span><br><span class="line"><span class="type">int</span> l = <span class="number">0</span>, r = n - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (l &lt; r)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (q[mid] &gt;= x) r = mid; <span class="comment">// 符号按需要更改</span></span><br><span class="line">    <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> r;</span><br></pre></td></tr></table></figure>
+<h2 id="符号判断"><a href="#符号判断" class="headerlink" title="符号判断"></a>符号判断</h2><p>二分中使用什么符号曾经困扰了我很久，现总结如下：<br>大原则：<strong>搞不清就带等号</strong>，带等号的时候和字面理解意思相同<br>其中，以下两个式子表示含义相同：</p>
+<ul>
+<li><strong>&gt;&#x3D;</strong> 会输出满足大于等于条件的第一个数</li>
+<li><strong>&lt;</strong> 会输出从后往前看不满足小于条件的第一个数</li>
+</ul>
+<p>以下两个式子表示含义相同：</p>
+<ul>
+<li><strong>&lt;&#x3D;</strong> 会输出从后往前看满足小于等于条件的第一个数</li>
+<li><strong>&gt;</strong>  会输出不满足条件的最后一个数</li>
+</ul>
+<p>举个栗子</p>
+<blockquote>
+<p>现有如下序列：1 2 3 4 5 5 5 6 7 8 9</p>
+</blockquote>
+<p>现需查找 “5” ——</p>
+<ul>
+<li>当使用 <strong>&gt;&#x3D;</strong> 时，找到的是第 1 个 5</li>
+<li>当使用 <strong>&lt;&#x3D;</strong> 时，找到的是第 3 个 5</li>
+<li>当使用 <strong>&gt;</strong> 时，找到的是第 1 个 5</li>
+<li>当使用 <strong>&lt;</strong> 时，找到的是第 3 个 5</li>
+</ul>
+]]></content>
+      <categories>
+        <category>[object Object]</category>
+      </categories>
+      <tags>
+        <tag>[object Object]</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>写在前面的话</title>
     <url>/posts/4a17b156.html</url>
     <content><![CDATA[<p>欢迎来到 Texcavator 的 Blog！</p>
