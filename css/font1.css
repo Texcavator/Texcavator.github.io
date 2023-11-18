@@ -1,0 +1,8 @@
+@font-face{
+    font-family: 'DuanNingMaoBiXingShuWanZhengBan-2';
+    font-display: swap;
+    src: url('../font/DuanNingMaoBiXingShuWanZhengBan-2.ttf') format("truetype");
+}
+body {
+    font-family: 'DuanNingMaoBiXingShuWanZhengBan-2';
+}
